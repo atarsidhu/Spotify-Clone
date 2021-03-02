@@ -1,5 +1,6 @@
-# Getting Started with Create React App
+# Spotify Clone
 
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -70,3 +71,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Spotify-Clone
+=======
+A clone of Spotify's Web Player. 
+>>>>>>> 50e6f87344b42189bf9a5bd4472e2589a2b31790
