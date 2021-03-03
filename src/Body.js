@@ -9,6 +9,7 @@ import SongRow from "./SongRow";
 
 function Body({ spotify }) {
   const [{ discover_weekly }, dispatch] = useDataLayerValue();
+  //   console.log(discover_weekly.tracks.items);
 
   return (
     <div className="body">
@@ -40,7 +41,7 @@ function Body({ spotify }) {
           <hr className="body__rowHr" />
         </div>
         {discover_weekly?.tracks.items.map((item) => (
-          <SongRow track={item.track} />
+          <SongRow key={item.track.id} track={item.track} />
         ))}
       </div>
     </div>
