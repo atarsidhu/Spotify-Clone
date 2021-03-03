@@ -3,8 +3,8 @@
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  height: 65px;
-  width: 97%;
+  height: 55px;
+  width: 100%;
   background-color: #282828;
   padding: 20px;
 }
@@ -14,7 +14,7 @@
 }
 
 .footer__left {
-  flex: 0.25;
+  flex: 0.2;
   display: flex;
   align-items: center;
   color: white;
@@ -41,7 +41,7 @@
 }
 
 .footer__center {
-  flex: 0.5;
+  flex: 0.6;
   padding: 0 100px;
   color: white;
   display: flex;
@@ -57,7 +57,7 @@
 }
 
 .footer__right {
-  flex: 0.25;
+  flex: 0.2;
   display: flex;
   align-items: center;
   justify-content: space-between;

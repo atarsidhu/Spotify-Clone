@@ -3,7 +3,7 @@ import "./Body.css";
 import { useDataLayerValue } from "./DataLayer";
 import Header from "./Header";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import SongRow from "./SongRow";
 
@@ -25,11 +25,20 @@ function Body({ spotify }) {
 
       <div className="body__songs">
         <div className="body__icons">
-          <PlayCircleFilledIcon className="body__play" />
-          <FavoriteIcon fontSize="large" />
+          <div className="white-background">
+            <PlayCircleFilledIcon className="body__play" />
+          </div>
+          <FavoriteBorderIcon fontSize="large" />
           <MoreHorizIcon />
         </div>
-
+        <div className="body__rowTitles">
+          <p className="body__rowName">Title</p>
+          <p className="body__rowAlbum">Album</p>
+          <p className="body__rowLength">Length</p>
+        </div>
+        <div className="hr">
+          <hr className="body__rowHr" />
+        </div>
         {discover_weekly?.tracks.items.map((item) => (
           <SongRow track={item.track} />
         ))}
