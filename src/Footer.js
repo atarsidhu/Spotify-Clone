@@ -14,6 +14,7 @@ import { songSelected } from "./SongRow";
 function Footer() {
   //   const [{ discover_weekly }, dispatch] = useDataLayerValue();
   //   const songName = songSelected();
+  //
 
   return (
     <div className="footer">
