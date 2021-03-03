@@ -8,8 +8,10 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import SongRow from "./SongRow";
 
 function Body({ spotify }) {
-  const [{ discover_weekly }, dispatch] = useDataLayerValue();
+  //   const [{ discover_weekly }, dispatch] = useDataLayerValue();
+  const [{ discover_weekly }] = useDataLayerValue();
   //   console.log(discover_weekly.tracks.items);
+  //
 
   return (
     <div className="body">

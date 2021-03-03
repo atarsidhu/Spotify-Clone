@@ -9,7 +9,7 @@ import { Grid, Slider } from "@material-ui/core";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
 // import { useDataLayerValue } from "./DataLayer";
-import { songSelected } from "./SongRow";
+//import { songSelected } from "./SongRow";
 
 function Footer() {
   //   const [{ discover_weekly }, dispatch] = useDataLayerValue();
