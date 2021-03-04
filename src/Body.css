@@ -39,6 +39,7 @@
 .body__icons {
   display: flex;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .body__icons > .MuiSvgIcon-root {
@@ -49,9 +50,6 @@
   height: 40px;
   width: 40px;
   background-color: white;
-  /* margin-left: 35px; */
-  /* margin-top: 20px; */
-  /* margin-bottom: 20px; */
   margin: 20px 40px 20px 40px;
 }
 
@@ -70,19 +68,23 @@
 
 .body__rowTitles {
   display: flex;
-  margin-left: 125px;
+  margin-left: 55px;
   margin-bottom: 5px;
   color: gray;
   padding-right: 15px;
 }
 
+.body__number {
+  flex: 0.02;
+}
+
 .body__rowName {
-  flex: 0.45;
+  flex: 0.485;
   /* margin-right: 45px; */
 }
 
 .body__rowAlbum {
-  flex: 0.5;
+  flex: 0.49;
 }
 
 .body__rowLength {

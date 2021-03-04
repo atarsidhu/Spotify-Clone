@@ -8,9 +8,22 @@ import { useDataLayerValue } from "./DataLayer";
 
 const spotify = new SpotifyWebApi();
 
+// Set initial playlist to Top Songs Global
+let playlistID = "37i9dQZEVXbNG2KDcFcKOF";
+
 function App() {
   // const [{ user, token }, dispatch] = useDataLayerValue();
-  const [{ token }, dispatch] = useDataLayerValue();
+  const [{ token, playlists, playlistName }, dispatch] = useDataLayerValue();
+
+  if (typeof playlists.items !== "undefined") {
+    playlists.items.forEach((item) => {
+      if (item.name === playlistName) {
+        playlistID = item.id;
+      } else if (playlistName === "Home") {
+        playlistID = "37i9dQZEVXbNG2KDcFcKOF";
+      }
+    });
+  }
 
   // Run code based on a given condition
   useEffect(() => {
@@ -46,16 +59,18 @@ function App() {
           type: "SET_PLAYLISTS",
           playlists: playlists,
         });
-      });
-
-      spotify.getPlaylist("37i9dQZEVXcMxFfoBlQtm7").then((response) => {
-        dispatch({
-          type: "SET_DISCOVER_WEEKLY",
-          discover_weekly: response,
-        });
+        // console.log(playlists);
       });
     }
-  }, []);
+
+    // Get top global songs from Spotify
+    spotify.getPlaylist(playlistID).then((response) => {
+      dispatch({
+        type: "SET_TOP_SONGS",
+        topSongs: response,
+      });
+    });
+  }, [playlistID]);
 
   return (
     <div className="app">

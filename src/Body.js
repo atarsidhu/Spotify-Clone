@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Body.css";
 import { useDataLayerValue } from "./DataLayer";
 import Header from "./Header";
@@ -8,21 +8,20 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import SongRow from "./SongRow";
 
 function Body({ spotify }) {
-  //   const [{ discover_weekly }, dispatch] = useDataLayerValue();
-  const [{ discover_weekly }] = useDataLayerValue();
-  //   console.log(discover_weekly.tracks.items);
-  //
+  const [{ topSongs }] = useDataLayerValue();
+
+  let currentPlaylist = topSongs;
 
   return (
     <div className="body">
       <Header spotify={spotify} />
 
       <div className="body__info">
-        <img src={discover_weekly?.images[0].url} alt="" />
+        <img src={topSongs?.images[0].url} alt="" />
         <div className="body__infoText">
           <strong>PLAYLIST</strong>
-          <h2>Discover Weekly</h2>
-          <p>{discover_weekly?.description}</p>
+          <h2>{currentPlaylist?.name}</h2>
+          <p>{currentPlaylist?.description}</p>
         </div>
       </div>
 
@@ -35,15 +34,16 @@ function Body({ spotify }) {
           <MoreHorizIcon />
         </div>
         <div className="body__rowTitles">
-          <p className="body__rowName">Title</p>
-          <p className="body__rowAlbum">Album</p>
-          <p className="body__rowLength">Length</p>
+          <p className="body__number">#</p>
+          <p className="body__rowName">TITLE</p>
+          <p className="body__rowAlbum">ALBUM</p>
+          <p className="body__rowLength">LENGTH</p>
         </div>
         <div className="hr">
           <hr className="body__rowHr" />
         </div>
-        {discover_weekly?.tracks.items.map((item) => (
-          <SongRow key={item.track.id} track={item.track} />
+        {currentPlaylist?.tracks.items.map((_item, index) => (
+          <SongRow key={index} track={_item.track} idx={index} />
         ))}
       </div>
     </div>
