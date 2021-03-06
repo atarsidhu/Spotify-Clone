@@ -1,0 +1,66 @@
+.search {
+  display: flex;
+}
+
+.search__left {
+  width: 45%;
+}
+
+.search__right {
+  width: 100%;
+}
+
+.artist__info {
+  display: flex;
+  margin: 20px;
+  overflow-x: overlay;
+}
+
+.artist__info::-webkit-scrollbar {
+  display: none;
+}
+
+.artist__each {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin-right: 20px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.artist__each:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: background-color 500ms ease;
+}
+
+.artist__name {
+  text-align: center;
+}
+
+.artist__img {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.artistImg {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 75px;
+}
+
+.albumImg {
+  width: 150px !important;
+  height: 150px !important;
+  margin-bottom: 5px;
+}
+
+.album__artist {
+  color: gray;
+  font-size: 90%;
+}
+
+.song__title {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

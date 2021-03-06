@@ -4,14 +4,17 @@ export const initialState = {
   playing: false,
   playlistName: "",
   songInfo: {
-    name: "Yeah!",
+    index: 3,
+    name: "Blinding Lights",
     artist: [
       {
-        name: "Usher",
+        name: "The Weeknd",
       },
     ],
     imageSrc:
-      "https://upload.wikimedia.org/wikipedia/en/7/74/Usher_-_Confessions_album_cover.jpg",
+      "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36",
+    preview_url:
+      "https://p.scdn.co/mp3-preview/2f860d8f53b4f34dbef1053890845a8a162fba82?cid=ff29a3deded14c41b6b98c8a0a60fe2c",
   },
   // Replace token with null after developing..This just allows us to not have to login everytime
   //   token:
@@ -28,7 +31,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "SET_USER":
       return {
-        ...state, // Keep whatever is in the current state. DO NOT OVERWRITE
+        ...state,
         user: action.user,
       };
 
@@ -60,6 +63,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         songInfo: action.item,
+      };
+
+    // action.[THE NAME OF THE KEY]
+    case "SET_SEARCH":
+      return {
+        ...state,
+        searchInfo: action.searchInfo,
       };
 
     default:
