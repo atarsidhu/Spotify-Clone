@@ -7,8 +7,6 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import { useDataLayerValue } from "./DataLayer";
 
 function Sidebar() {
-  //   const [{ playlists }, dispatch] = useDataLayerValue();
-
   // Getting playlist from DataLayer
   const [{ playlists }] = useDataLayerValue();
 
