@@ -12,7 +12,7 @@ function Body({ spotify }) {
   const [{ topSongs, searchInfo }] = useDataLayerValue();
 
   let currentPlaylist = topSongs;
-  console.log(searchInfo);
+  //   console.log(searchInfo);
 
   return (
     <div className="body">
@@ -52,7 +52,7 @@ function Body({ spotify }) {
           </div>
         </div>
       ) : (
-        <Search />
+        <Search spotify={spotify} />
       )}
     </div>
   );

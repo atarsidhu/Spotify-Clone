@@ -6,19 +6,31 @@ function SongRow({ track, idx }) {
   const trackLength = convertToMinutes(track);
   const index = idx + 1;
 
-  console.log(track);
+  const [{ selectedAlbumImage }, dispatch] = useDataLayerValue();
 
-  const [state, dispatch] = useDataLayerValue();
+  // {
+  //   item?.images[0]?.url ? (
+  //     <img src={item?.images[0]?.url} alt="" className="artistImg" />
+  //   ) : (
+  //     <Avatar className="artistImg" />
+  //   );
+  // }
+
+  let image = "";
+
+  track?.album?.images[0]?.url
+    ? (image = track?.album?.images[0]?.url)
+    : (image = selectedAlbumImage);
 
   const clickHandler = () => {
     dispatch({
       type: "SET_SONG_INFO",
       item: {
         index: index,
-        name: track.name,
-        artist: track.artists,
-        imageSrc: track.album.images[0].url,
-        preview_url: track.preview_url,
+        name: track?.name,
+        artist: track?.artists,
+        imageSrc: image,
+        preview_url: track?.preview_url,
       },
     });
 
@@ -45,15 +57,19 @@ function SongRow({ track, idx }) {
       </p>
       <img
         className="songRow__albumImg"
-        src={track.album.images[0].url}
+        src={
+          track?.album?.images[0]?.url
+            ? (image = track?.album?.images[0]?.url)
+            : (image = selectedAlbumImage)
+        }
         alt=""
       />
       <div className="songRow__info">
         <div className="songRow__nameAndArtist">
-          <h1 id="name">{track.name}</h1>
-          <p>{track.artists.map((artist) => artist.name).join(", ")}</p>
+          <h1 id="name">{track?.name}</h1>
+          <p>{track?.artists?.map((artist) => artist.name).join(", ")}</p>
         </div>
-        <p className="songRow__album">{track.album.name}</p>
+        <p className="songRow__album">{track?.album?.name}</p>
         <p className="songRow__trackLength">{trackLength}</p>
       </div>
     </div>

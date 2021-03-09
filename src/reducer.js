@@ -72,6 +72,19 @@ const reducer = (state, action) => {
         searchInfo: action.searchInfo,
       };
 
+    case "SET_SELECTED_ARTIST_TRACKS":
+      return {
+        ...state,
+        selectedArtistTracks: action.selectedArtistTracks,
+      };
+
+    case "SET_SELECTED_ALBUM_TRACKS":
+      return {
+        ...state,
+        selectedAlbumTracks: action.selectedAlbumTracks,
+        selectedAlbumImage: action.selectedAlbumImage,
+      };
+
     default:
       return state;
   }
