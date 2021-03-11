@@ -64,3 +64,12 @@
   margin-left: 20px;
   margin-bottom: 10px;
 }
+
+.song__tracks {
+  height: 65vh;
+  overflow-y: overlay;
+}
+
+.song__tracks::-webkit-scrollbar {
+  display: none;
+}

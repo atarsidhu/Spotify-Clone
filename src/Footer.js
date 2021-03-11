@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Footer.css";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import PauseCircleFilledIcon from "@material-ui/icons/PauseCircleFilled";
@@ -9,9 +9,14 @@ import RepeatIcon from "@material-ui/icons/Repeat";
 import { Grid, Slider } from "@material-ui/core";
 import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
+import VolumeMuteIcon from "@material-ui/icons/VolumeMute";
+import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import { useDataLayerValue } from "./DataLayer";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+
+let intervalId = 0;
+let sliderId = 0;
 
 function Footer() {
   const [{ songInfo, topSongs }] = useDataLayerValue();
@@ -19,6 +24,8 @@ function Footer() {
 
   const playButton = document.getElementById("play");
   const pauseButton = document.getElementById("pause");
+  const nextButton = document.getElementById("iconNext");
+  const prevButton = document.getElementById("iconPrev");
   const audioPlayer = document.getElementById("player");
   let songImg = document.getElementById("songImg");
   let songName = document.getElementById("songName");
@@ -27,31 +34,141 @@ function Footer() {
   const iconPrev = document.getElementById("iconPrev");
   const iconShuffle = document.getElementById("iconShuffle");
   const iconRepeat = document.getElementById("iconRepeat");
+  let volumeRocker = document.getElementsByClassName("MuiSlider-thumb");
+  let sliderColor = document.getElementsByClassName("MuiSlider-track");
+  let rail = document.getElementsByClassName("MuiSlider-root");
+  let volumeLevel = 0;
+  let slider = document.getElementById("bar");
+  let seconds = 0;
+  let milliseconds = 0;
+  let songTimer = document.getElementById("start");
+  let volumeDownIcon = document.getElementById("volumeDown");
+  let volumeUpIcon = document.getElementById("volumeUp");
+  let volumeMuteIcon = document.getElementById("volumeMute");
+  let tooltip = document.getElementById("tooltipText");
+
+  if (typeof rail[0] !== "undefined") {
+    sliderColor[0].style = "width: 50%";
+    volumeRocker[0].style = "left: 50%";
+    rail[0].addEventListener("click", () => {
+      volumeLevel = volumeRocker[0].ariaValueNow / 100;
+      audioPlayer.volume = volumeLevel;
+
+      if (volumeLevel === 0) {
+        volumeDownIcon.style.display = "none";
+        volumeUpIcon.style.display = "none";
+        volumeMuteIcon.style.display = "block";
+      } else if (volumeLevel > 0 && volumeLevel < 0.5) {
+        volumeDownIcon.style.display = "block";
+        volumeUpIcon.style.display = "none";
+        volumeMuteIcon.style.display = "none";
+      } else {
+        volumeDownIcon.style.display = "none";
+        volumeUpIcon.style.display = "block";
+        volumeMuteIcon.style.display = "none";
+      }
+    });
+  }
 
   let currentSongIndex = songInfo.index - 1;
 
+  const didMountRef = useRef(false);
+
   useEffect(() => {
-    const audioPlayer = document.getElementById("player");
-    audioPlayer.load();
-    playSong();
+    if (didMountRef.current) {
+      if (songInfo.preview_url === null) {
+        resetProgressBarValues();
+        audioPlayer.pause();
+        tooltip.style.transition = "all 2s";
+        tooltip.style.opacity = 1;
+
+        playButton.onclick = null;
+        toggleButtons(false);
+      } else {
+        audioPlayer.load();
+        stopTimer();
+        songTimer.innerText = `0:00`;
+        playSong();
+        toggleButtons(true);
+      }
+    } else {
+      didMountRef.current = true;
+    }
   }, [songInfo.name]);
 
+  function toggleButtons(enable) {
+    if (enable) {
+      playButton.style.color = "white";
+      nextButton.style.color = "white";
+      prevButton.style.color = "white";
+    } else {
+      playButton.style.color = "gray";
+      nextButton.style.color = "gray";
+      prevButton.style.color = "gray";
+    }
+  }
+
+  function incrementSeconds() {
+    if (seconds < 30) {
+      seconds += 1;
+
+      if (seconds > 9) {
+        songTimer.innerText = `0:${seconds}`;
+      } else {
+        songTimer.innerText = `0:0${seconds}`;
+      }
+    } else {
+      resetProgressBarValues();
+    }
+  }
+
+  function resetProgressBarValues() {
+    stopTimer();
+    seconds = 0;
+    milliseconds = 0;
+    songTimer.innerText = "0:00";
+    slider.style.width = "0%";
+    playButton.style.display = "block";
+    pauseButton.style.display = "none";
+  }
+
+  function sliderWidth() {
+    if (milliseconds < 30000) {
+      milliseconds += 50;
+      slider.style.width = milliseconds / 300 + "%";
+    }
+  }
+
+  function startTimer() {
+    intervalId = setInterval(incrementSeconds, 1000);
+    sliderId = setInterval(sliderWidth, 50);
+  }
+
+  function stopTimer() {
+    clearInterval(intervalId);
+    clearInterval(sliderId);
+  }
+
   function playSong() {
-    const audioPlayer = document.getElementById("player");
-    const playButton = document.getElementById("play");
-    const pauseButton = document.getElementById("pause");
+    // tooltip.style.display = "none";
+    tooltip.style.opacity = 0;
     audioPlayer.play();
     playButton.style.display = "none";
     pauseButton.style.display = "block";
+    startTimer();
   }
 
   function pauseSong() {
     audioPlayer.pause();
     pauseButton.style.display = "none";
     playButton.style.display = "block";
+
+    stopTimer();
   }
 
   function nextSong() {
+    resetProgressBarValues();
+
     // If the song isnt the last song in the playlist
     if (currentSongIndex < listOfSongs.tracks.items.length - 1) {
       // Get random song
@@ -95,6 +212,8 @@ function Footer() {
   }
 
   function prevSong() {
+    resetProgressBarValues();
+
     // If the song isnt the first song in the playlist
     if (currentSongIndex != 0) {
       const currentTrack = listOfSongs.tracks.items[--currentSongIndex];
@@ -168,58 +287,73 @@ function Footer() {
         </div>
       </div>
       <div className="footer__center">
-        <ShuffleIcon
-          id="iconShuffle"
-          onClick={shuffleSongs}
-          className="footer__icon"
-        />
-        <SkipPreviousIcon
-          id="iconPrev"
-          className="footer__icon"
-          onClick={prevSong}
-        />
-        <div id="play">
-          {/* <Popup
-          trigger={}
-          position="top left"
-        >
-          {(close) => (
-            <div>
-              This song cannot be played.
-              <a className="close" onClick={close}>
-                &times;
-              </a>
-            </div>
+        <div className="center__top">
+          <ShuffleIcon
+            id="iconShuffle"
+            onClick={shuffleSongs}
+            className="footer__icon"
+          />
+          {songInfo.preview_url === null ? (
+            <SkipPreviousIcon id="iconPrev" />
+          ) : (
+            <SkipPreviousIcon
+              id="iconPrev"
+              className="footer__icon"
+              onClick={prevSong}
+            />
           )}
-        </Popup> */}
-          <PlayCircleFilledIcon
-            fontSize="large"
-            className="footer__icon playIcon"
-            onClick={playSong}
+
+          <div id="play">
+            <div id="tooltip" className="tooltip">
+              <div id="tooltipText" className="tooltipText">
+                This song is unavailable
+              </div>
+            </div>
+            {songInfo.preview_url === null ? (
+              <PlayCircleFilledIcon fontSize="large" />
+            ) : (
+              <PlayCircleFilledIcon
+                fontSize="large"
+                className="footer__icon playIcon"
+                onClick={playSong}
+              />
+            )}
+          </div>
+          <div id="pause">
+            <PauseCircleFilledIcon
+              fontSize="large"
+              className="footer__icon pauseIcon"
+              onClick={pauseSong}
+            />
+          </div>
+          {songInfo.preview_url === null ? (
+            <SkipNextIcon id="iconNext" />
+          ) : (
+            <SkipNextIcon
+              id="iconNext"
+              className="footer__icon"
+              onClick={nextSong}
+            />
+          )}
+
+          <RepeatIcon
+            id="iconRepeat"
+            className="footer__green"
+            onClick={repeatSongs}
           />
+          <audio
+            id="player"
+            className="audio"
+            src={songInfo.preview_url}
+          ></audio>
         </div>
-        <div id="pause">
-          <PauseCircleFilledIcon
-            fontSize="large"
-            className="footer__icon pauseIcon"
-            onClick={pauseSong}
-          />
+        <div className="center__bottom">
+          <p id="start">0:00</p>
+          <div id="bottom__slider">
+            <div id="bar"></div>
+          </div>
+          <p>0:30</p>
         </div>
-        <SkipNextIcon
-          id="iconNext"
-          className="footer__icon"
-          onClick={nextSong}
-        />
-        <RepeatIcon
-          id="iconRepeat"
-          className="footer__green"
-          onClick={repeatSongs}
-        />
-        {/* <div className="player"> */}
-        <audio id="player" className="audio" src={songInfo.preview_url}>
-          {/* <source src={songInfo.preview_url} type="audio/mpeg" /> */}
-        </audio>
-        {/* </div> */}
       </div>
       <div className="footer__right">
         <Grid container spacing={2}>
@@ -227,10 +361,12 @@ function Footer() {
             <PlaylistPlayIcon />
           </Grid>
           <Grid item>
-            <VolumeDownIcon />
+            <VolumeDownIcon id="volumeDown" />
+            <VolumeMuteIcon id="volumeMute" />
+            <VolumeUpIcon id="volumeUp" />
           </Grid>
           <Grid item xs>
-            <Slider />
+            <Slider aria-labelledby="continuous-slider" />
           </Grid>
         </Grid>
       </div>

@@ -34,7 +34,7 @@ function Header({ spotify }) {
         <input
           id="search"
           type="text"
-          placeholder="Search for Artists, Songs, or Podcasts"
+          placeholder="Search for Artists or Songs"
           onKeyUp={inputHandler}
         />
       </div>

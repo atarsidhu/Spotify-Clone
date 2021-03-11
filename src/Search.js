@@ -38,7 +38,7 @@ function Search({ spotify }) {
     whatWasClicked = "artist";
 
     spotify.getArtist(artistId).then((artist) => {
-      songHeading.innerText = `Top ${artist.name} Songs`;
+      songHeading.innerText = `Top Songs By ${artist.name}`;
     });
 
     spotify.getArtistTopTracks(artistId, "US").then((tracks) => {
@@ -126,7 +126,7 @@ function Search({ spotify }) {
           </div>
         </div>
 
-        <div className="playlist">
+        {/* <div className="playlist">
           <h1 id="playlist__heading">Playlists</h1>
           <div className="artist__info">
             {searchInfo?.playlists?.items?.slice(0, 10).map((item) => (
@@ -151,7 +151,7 @@ function Search({ spotify }) {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="search__right">
@@ -159,22 +159,24 @@ function Search({ spotify }) {
           <h1 id="song__heading" className="song__title">
             Songs
           </h1>
-          {/* If selectedArtistTracks OR selectedAlbumTracks is empty, 
+          <div className="song__tracks">
+            {/* If selectedArtistTracks OR selectedAlbumTracks is empty, 
           load general searchInfo else load artistTracks or albumTracks */}
-          {(typeof selectedArtistTracks === "undefined" ||
-            selectedArtistTracks === "") &&
-          (typeof selectedAlbumTracks === "undefined" ||
-            selectedAlbumTracks === "")
-            ? searchInfo?.tracks?.items?.map((item, index) => (
-                <SongRow key={index} track={item} idx={index} />
-              ))
-            : whatWasClicked === "artist"
-            ? selectedArtistTracks?.tracks?.map((item, index) => (
-                <SongRow key={index} track={item} idx={index} />
-              ))
-            : selectedAlbumTracks?.items?.map((item, index) => (
-                <SongRow key={index} track={item} idx={index} />
-              ))}
+            {(typeof selectedArtistTracks === "undefined" ||
+              selectedArtistTracks === "") &&
+            (typeof selectedAlbumTracks === "undefined" ||
+              selectedAlbumTracks === "")
+              ? searchInfo?.tracks?.items?.map((item, index) => (
+                  <SongRow key={index} track={item} idx={index} />
+                ))
+              : whatWasClicked === "artist"
+              ? selectedArtistTracks?.tracks?.map((item, index) => (
+                  <SongRow key={index} track={item} idx={index} />
+                ))
+              : selectedAlbumTracks?.items?.map((item, index) => (
+                  <SongRow key={index} track={item} idx={index} />
+                ))}
+          </div>
         </div>
       </div>
     </div>

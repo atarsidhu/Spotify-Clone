@@ -65,7 +65,6 @@ const reducer = (state, action) => {
         songInfo: action.item,
       };
 
-    // action.[THE NAME OF THE KEY]
     case "SET_SEARCH":
       return {
         ...state,
