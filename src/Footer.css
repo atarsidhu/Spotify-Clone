@@ -82,6 +82,10 @@
   transform: scale(1.2) !important;
 }
 
+.disabled {
+  color: gray;
+}
+
 .footer__right {
   flex: 0.16;
   display: flex;

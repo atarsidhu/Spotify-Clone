@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Body.css";
 import { useDataLayerValue } from "./DataLayer";
 import Header from "./Header";
@@ -12,7 +12,6 @@ function Body({ spotify }) {
   const [{ topSongs, searchInfo }] = useDataLayerValue();
 
   let currentPlaylist = topSongs;
-  //   console.log(searchInfo);
 
   return (
     <div className="body">

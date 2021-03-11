@@ -77,13 +77,7 @@ function Footer() {
   useEffect(() => {
     if (didMountRef.current) {
       if (songInfo.preview_url === null) {
-        resetProgressBarValues();
-        audioPlayer.pause();
-        tooltip.style.transition = "all 2s";
-        tooltip.style.opacity = 1;
-
-        playButton.onclick = null;
-        toggleButtons(false);
+        previewUnavailable();
       } else {
         audioPlayer.load();
         stopTimer();
@@ -95,6 +89,15 @@ function Footer() {
       didMountRef.current = true;
     }
   }, [songInfo.name]);
+
+  function previewUnavailable() {
+    resetProgressBarValues();
+    audioPlayer.pause();
+    tooltip.style.transition = "all 2s";
+    tooltip.style.opacity = 1;
+    // playButton.onclick = null;
+    toggleButtons(false);
+  }
 
   function toggleButtons(enable) {
     if (enable) {
@@ -182,16 +185,11 @@ function Footer() {
             currentSongIndex = randomNumber(
               listOfSongs.tracks.items.length - 2
             );
-            console.log("new: " + currentSongIndex);
           }
         }
       }
 
       const currentTrack = listOfSongs.tracks.items[++currentSongIndex];
-
-      audioPlayer.src = currentTrack.track.preview_url;
-      audioPlayer.load();
-      playSong();
 
       songImg.src = currentTrack.track.album.images[0].url;
       songName.innerHTML = currentTrack.track.name;
@@ -199,13 +197,22 @@ function Footer() {
         .map((artist) => artist.name)
         .join(", ");
 
-      if (currentSongIndex > 0) {
-        iconPrev.style.color = "white";
-      }
+      if (currentTrack.track.preview_url === null) {
+        previewUnavailable();
+      } else {
+        toggleButtons(true);
+        audioPlayer.src = currentTrack.track.preview_url;
+        audioPlayer.load();
+        playSong();
 
-      if (!isShuffleOn()) {
-        if (currentSongIndex == listOfSongs.tracks.items.length - 1) {
-          iconNext.style.color = "grey";
+        if (currentSongIndex > 0) {
+          iconPrev.style.color = "white";
+        }
+
+        if (!isShuffleOn()) {
+          if (currentSongIndex == listOfSongs.tracks.items.length - 1) {
+            iconNext.style.color = "grey";
+          }
         }
       }
     }
@@ -218,22 +225,27 @@ function Footer() {
     if (currentSongIndex != 0) {
       const currentTrack = listOfSongs.tracks.items[--currentSongIndex];
 
-      audioPlayer.src = currentTrack.track.preview_url;
-      audioPlayer.load();
-      playSong();
-
       songImg.src = currentTrack.track.album.images[0].url;
       songName.innerHTML = currentTrack.track.name;
       songArtist.innerHTML = currentTrack.track.artists
         .map((artist) => artist.name)
         .join(", ");
 
-      if (currentSongIndex == 0) {
-        iconPrev.style.color = "grey";
-      }
+      if (currentTrack.track.preview_url === null) {
+        previewUnavailable();
+      } else {
+        toggleButtons(true);
+        audioPlayer.src = currentTrack.track.preview_url;
+        audioPlayer.load();
+        playSong();
 
-      if (currentSongIndex < listOfSongs.tracks.items.length - 1) {
-        iconNext.style.color = "white";
+        if (currentSongIndex == 0) {
+          iconPrev.style.color = "grey";
+        }
+
+        if (currentSongIndex < listOfSongs.tracks.items.length - 1) {
+          iconNext.style.color = "white";
+        }
       }
     }
   }
@@ -314,7 +326,7 @@ function Footer() {
             ) : (
               <PlayCircleFilledIcon
                 fontSize="large"
-                className="footer__icon playIcon"
+                className="footer__icon"
                 onClick={playSong}
               />
             )}
@@ -322,7 +334,7 @@ function Footer() {
           <div id="pause">
             <PauseCircleFilledIcon
               fontSize="large"
-              className="footer__icon pauseIcon"
+              className="footer__icon"
               onClick={pauseSong}
             />
           </div>

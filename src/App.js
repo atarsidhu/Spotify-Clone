@@ -12,7 +12,6 @@ const spotify = new SpotifyWebApi();
 let playlistID = "37i9dQZEVXbNG2KDcFcKOF";
 
 function App() {
-  // const [{ user, token }, dispatch] = useDataLayerValue();
   const [{ token, playlists, playlistName }, dispatch] = useDataLayerValue();
 
   if (typeof playlists.items !== "undefined") {
@@ -25,7 +24,6 @@ function App() {
     });
   }
 
-  // Run code based on a given condition
   useEffect(() => {
     // Get token from URL
     const hash = getTokenFromUrl();
@@ -34,6 +32,7 @@ function App() {
     window.location.hash = "";
 
     const _token = hash.access_token;
+    let userId = "";
 
     // Store token in state
     if (_token) {
@@ -59,7 +58,6 @@ function App() {
           type: "SET_PLAYLISTS",
           playlists: playlists,
         });
-        // console.log(playlists);
       });
     }
 
@@ -74,7 +72,6 @@ function App() {
 
   return (
     <div className="app">
-      {/* If we have a token (if we successfully logged in), show Player. Else show login */}
       {token ? <Player spotify={spotify} /> : <Login />}
     </div>
   );
