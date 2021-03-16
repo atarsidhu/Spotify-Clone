@@ -46,6 +46,15 @@ function Footer() {
   let volumeUpIcon = document.getElementById("volumeUp");
   let volumeMuteIcon = document.getElementById("volumeMute");
   let tooltip = document.getElementById("tooltipText");
+  let volume = document.getElementsByClassName("volume");
+
+  for (let i = 0; i < volume.length; i++) {
+    volume[i].addEventListener("click", () => {
+      let sl = document.getElementsByClassName("volume-slider");
+      console.log(sl[0]);
+      sl[0].style.setProperty("display", "block", "important");
+    });
+  }
 
   if (typeof rail[0] !== "undefined") {
     sliderColor[0].style = "width: 50%";
@@ -303,7 +312,7 @@ function Footer() {
           <ShuffleIcon
             id="iconShuffle"
             onClick={shuffleSongs}
-            className="footer__icon"
+            className="footer__icon extra__icon"
           />
           {songInfo.preview_url === null ? (
             <SkipPreviousIcon id="iconPrev" />
@@ -316,10 +325,8 @@ function Footer() {
           )}
 
           <div id="play">
-            <div id="tooltip" className="tooltip">
-              <div id="tooltipText" className="tooltipText">
-                This song is unavailable
-              </div>
+            <div id="tooltip">
+              <div id="tooltipText">This song is unavailable</div>
             </div>
             {songInfo.preview_url === null ? (
               <PlayCircleFilledIcon fontSize="large" />
@@ -350,7 +357,7 @@ function Footer() {
 
           <RepeatIcon
             id="iconRepeat"
-            className="footer__green"
+            className="footer__green extra__icon"
             onClick={repeatSongs}
           />
           <audio
@@ -370,15 +377,16 @@ function Footer() {
       <div className="footer__right">
         <Grid container spacing={2}>
           <Grid item>
-            <PlaylistPlayIcon />
-          </Grid>
-          <Grid item>
-            <VolumeDownIcon id="volumeDown" />
-            <VolumeMuteIcon id="volumeMute" />
-            <VolumeUpIcon id="volumeUp" />
+            <VolumeDownIcon id="volumeDown" className="volume" />
+            <VolumeMuteIcon id="volumeMute" className="volume" />
+            <VolumeUpIcon id="volumeUp" className="volume" />
           </Grid>
           <Grid item xs>
-            <Slider aria-labelledby="continuous-slider" />
+            <Slider
+              aria-labelledby="continuous-slider"
+              className="volume-slider"
+              orientation="vertical"
+            />
           </Grid>
         </Grid>
       </div>

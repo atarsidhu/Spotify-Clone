@@ -156,10 +156,6 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  /* .center__top {
-    max-width: 300px;
-  } */
-
   .center__top > * {
     padding: 0 10px;
   }
@@ -208,5 +204,79 @@
 @media only screen and (max-width: 480px) {
   .footer {
     bottom: -1px;
+    padding: 10px 5px;
+  }
+
+  .footer__left {
+    flex: 1;
+    /* display: flex; */
+    /* align-items: center; */
+    /* color: white; */
+    min-width: 120px;
+    /* margin: -20px; */
+  }
+
+  .footer__albumLogo {
+    /* height: 60px; */
+    /* width: 60px; */
+    /* margin-right: 20px; */
+    /* object-fit: contain; */
+  }
+
+  .footer__right {
+    flex: 0.05;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    margin-right: 0;
+    position: relative;
+  }
+
+  .footer__center {
+    justify-content: stretch;
+    flex: 0.8;
+  }
+
+  .center__bottom > p {
+    padding: 0 5px;
+  }
+
+  .center__top {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .footer__icon,
+  .footer__green {
+    /* font-size: 30px !important; */
+    padding: 0 8px !important;
+  }
+
+  .extra__icon {
+    font-size: 20px !important;
+    display: none !important;
+  }
+
+  .MuiGrid-item {
+    margin-right: 20px !important;
+    margin-left: 10px !important;
+  }
+
+  .volume-slider {
+    display: none !important;
+    position: absolute !important;
+    left: 0%;
+    bottom: 100%;
+  }
+
+  .MuiSlider-rail {
+    /* height: 70px !important; */
+  }
+
+  .MuiSlider-track {
+    width: 0 !important;
+  }
+
+  .MuiSlider-thumb {
+    /* left: 0 !important; */
   }
 }
