@@ -51,3 +51,33 @@
   height: 40px;
   width: 40px;
 }
+
+@media only screen and (max-width: 768px) {
+  .songRow {
+    margin-left: 20px;
+  }
+
+  .songRow__nameAndArtist > h1,
+  .songRow__album,
+  .songRow__trackLength {
+    font-size: 14px;
+  }
+
+  .songRow__nameAndArtist > p {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .songRow__nameAndArtist {
+    flex: 1;
+  }
+
+  .songRow__album {
+    display: none;
+  }
+
+  .songRow__trackLength {
+    margin-left: 5px;
+  }
+}

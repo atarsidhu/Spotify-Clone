@@ -62,7 +62,6 @@ function Login() {
                     src="https://i.scdn.co/image/ab67706f0000000287bff188c40608c48b82068f"
                     alt=""
                   />
-                  {/* <p className="info">Listen to a 30 second preview.</p> */}
                 </div>
               </Slide>
               <Slide index={1}>
@@ -73,9 +72,6 @@ function Login() {
                     src="https://newjams-images.scdn.co/v3/discover-weekly/aAbca4VNfzWuUCQ_FGiEFA==/bmVuZW5lbmVuZW5lbmVuZQ==/default"
                     alt=""
                   />
-                  {/* <p className="info"> */}
-                  {/* Browse Spotify's collection of songs and artists. */}
-                  {/* </p> */}
                 </div>
               </Slide>
               <Slide index={2}>
@@ -86,7 +82,6 @@ function Login() {
                     src="https://lineup-images.scdn.co/wrapped-2020-top100_DEFAULT-en.jpg"
                     alt=""
                   />
-                  {/* <p className="info">View your playlists</p> */}
                 </div>
               </Slide>
             </Slider>
@@ -99,7 +94,5 @@ function Login() {
     </div>
   );
 }
-
-// U: spotify123@gmail.com P: admin123#
 
 export default Login;

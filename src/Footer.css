@@ -148,3 +148,65 @@
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
+
+@media only screen and (max-width: 1200px) {
+  .footer__right {
+    margin-right: 3%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  /* .center__top {
+    max-width: 300px;
+  } */
+
+  .center__top > * {
+    padding: 0 10px;
+  }
+
+  .footer__left {
+    flex: 0.2;
+  }
+
+  .footer__center {
+    flex: 0.6;
+  }
+
+  .footer__right {
+    flex: 0.2;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer__songInfo > h4 {
+    font-size: 12px;
+  }
+
+  .footer__songInfo > p {
+    font-size: 10px;
+  }
+
+  .footer__albumLogo {
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+  }
+
+  .center__top > * {
+    padding: 0 5px;
+  }
+
+  .MuiGrid-spacing-xs-2 > .MuiGrid-item {
+    padding: 0 !important;
+  }
+
+  .footer__right {
+    margin-right: 5%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .footer {
+    bottom: -1px;
+  }
+}

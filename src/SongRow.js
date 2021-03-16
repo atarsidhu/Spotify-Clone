@@ -8,14 +8,6 @@ function SongRow({ track, idx }) {
 
   const [{ selectedAlbumImage }, dispatch] = useDataLayerValue();
 
-  // {
-  //   item?.images[0]?.url ? (
-  //     <img src={item?.images[0]?.url} alt="" className="artistImg" />
-  //   ) : (
-  //     <Avatar className="artistImg" />
-  //   );
-  // }
-
   let image = "";
 
   track?.album?.images[0]?.url
@@ -33,21 +25,6 @@ function SongRow({ track, idx }) {
         preview_url: track?.preview_url,
       },
     });
-
-    // let num = document.getElementById("num");
-    // let num2 = document.getElementsByClassName("songRow");
-    // let name = document.getElementById("name");
-
-    // // Wont work for double digit numbers
-    // if (idx === num2[idx].innerText.charAt(0)) {
-    //   console.log("same");
-    // }
-    // num.innerHTML =
-    //   "<img width='14' height='14' src='https://open.scdn.co/cdn/images/equaliser-animated-green.73b73928.gif' alt=''/>";
-    // name.style.color = "#1ed15e";
-    // console.log(num2[1].innerText.charAt(0));
-    // console.log(idx);
-    //
   };
 
   return (
