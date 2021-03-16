@@ -208,25 +208,12 @@
   }
 
   .footer__left {
-    flex: 1;
-    /* display: flex; */
-    /* align-items: center; */
-    /* color: white; */
+    flex: 0 1 auto;
     min-width: 120px;
-    /* margin: -20px; */
-  }
-
-  .footer__albumLogo {
-    /* height: 60px; */
-    /* width: 60px; */
-    /* margin-right: 20px; */
-    /* object-fit: contain; */
   }
 
   .footer__right {
     flex: 0.05;
-    /* align-items: center; */
-    /* justify-content: space-between; */
     margin-right: 0;
     position: relative;
   }
@@ -247,7 +234,6 @@
 
   .footer__icon,
   .footer__green {
-    /* font-size: 30px !important; */
     padding: 0 8px !important;
   }
 
@@ -268,15 +254,7 @@
     bottom: 100%;
   }
 
-  .MuiSlider-rail {
-    /* height: 70px !important; */
-  }
-
   .MuiSlider-track {
     width: 0 !important;
-  }
-
-  .MuiSlider-thumb {
-    /* left: 0 !important; */
   }
 }
