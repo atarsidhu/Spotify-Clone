@@ -257,14 +257,14 @@
   }
 
   .MuiGrid-item {
-    margin-right: 20px !important;
+    margin-right: 25px !important;
     margin-left: 10px !important;
   }
 
   .volume-slider {
     display: none !important;
     position: absolute !important;
-    left: 0%;
+    left: -15%;
     bottom: 100%;
   }
 

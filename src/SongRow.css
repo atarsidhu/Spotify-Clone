@@ -80,4 +80,9 @@
   .songRow__trackLength {
     margin-left: 5px;
   }
+
+  .songRow__number {
+    font-size: 12px;
+    margin-right: 10px;
+  }
 }
