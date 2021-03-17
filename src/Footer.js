@@ -7,12 +7,10 @@ import SkipNextIcon from "@material-ui/icons/SkipNext";
 import ShuffleIcon from "@material-ui/icons/Shuffle";
 import RepeatIcon from "@material-ui/icons/Repeat";
 import { Grid, Slider } from "@material-ui/core";
-import PlaylistPlayIcon from "@material-ui/icons/PlaylistPlay";
 import VolumeDownIcon from "@material-ui/icons/VolumeDown";
 import VolumeMuteIcon from "@material-ui/icons/VolumeMute";
 import VolumeUpIcon from "@material-ui/icons/VolumeUp";
 import { useDataLayerValue } from "./DataLayer";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
 let intervalId = 0;
@@ -51,6 +49,7 @@ function Footer() {
 
   const [screenSize, setScreenSize] = useState([0, 0]);
 
+  // Setting the screen width
   function useMediaQuery() {
     useLayoutEffect(() => {
       function updateScreenSize() {
@@ -67,12 +66,14 @@ function Footer() {
   }
   let [width] = useMediaQuery();
 
+  // On click for the volume button
   for (let i = 0; i < volume.length; i++) {
     volume[i].addEventListener("click", () => {
       sl[0].style.setProperty("display", "block", "important");
     });
   }
 
+  // Changing the volume icon based on the current volume
   if (typeof rail[0] !== "undefined") {
     sliderColor[0].style = "width: 50%";
     volumeRocker[0].style = "left: 50%";
@@ -97,7 +98,6 @@ function Footer() {
   }
 
   let currentSongIndex = songInfo.index - 1;
-
   const didMountRef = useRef(false);
 
   useEffect(() => {
@@ -116,15 +116,16 @@ function Footer() {
     }
   }, [songInfo.name]);
 
+  // Show popup when song is unavailable
   function previewUnavailable() {
     resetProgressBarValues();
     audioPlayer.pause();
     tooltip.style.transition = "all 2s";
     tooltip.style.opacity = 1;
-    // playButton.onclick = null;
     toggleButtons(false);
   }
 
+  // Toggle the start and pause buttons when a song is unplayable
   function toggleButtons(enable) {
     if (enable) {
       playButton.style.color = "white";
@@ -151,6 +152,7 @@ function Footer() {
     }
   }
 
+  // Reset the song timer bar when a new song is played
   function resetProgressBarValues() {
     stopTimer();
     seconds = 0;
@@ -161,6 +163,7 @@ function Footer() {
     pauseButton.style.display = "none";
   }
 
+  // Set the width of the green timer bar for the song timer
   function sliderWidth() {
     if (milliseconds < 30000) {
       milliseconds += 50;
@@ -179,7 +182,6 @@ function Footer() {
   }
 
   function playSong() {
-    // tooltip.style.display = "none";
     tooltip.style.opacity = 0;
     audioPlayer.play();
     playButton.style.display = "none";
@@ -223,6 +225,7 @@ function Footer() {
         .map((artist) => artist.name)
         .join(", ");
 
+      // If the preview is unavailable
       if (currentTrack.track.preview_url === null) {
         previewUnavailable();
       } else {
@@ -257,6 +260,7 @@ function Footer() {
         .map((artist) => artist.name)
         .join(", ");
 
+      // If the preview is unavailable
       if (currentTrack.track.preview_url === null) {
         previewUnavailable();
       } else {
@@ -276,6 +280,7 @@ function Footer() {
     }
   }
 
+  // Toggle the shuffle songs icon
   function shuffleSongs() {
     if (!iconShuffle.classList.contains("footer__green")) {
       iconShuffle.classList.add("footer__green");
@@ -285,6 +290,7 @@ function Footer() {
     }
   }
 
+  // Toggle the repeat songs icon
   function repeatSongs() {
     if (!iconRepeat.classList.contains("footer__green")) {
       iconRepeat.classList.add("footer__green");
@@ -294,6 +300,7 @@ function Footer() {
     }
   }
 
+  // Check if shuffle icon is active
   function isShuffleOn() {
     if (iconShuffle.classList.contains("footer__green")) {
       return true;
@@ -302,6 +309,7 @@ function Footer() {
     return false;
   }
 
+  // Get a random number with the max set to the number of songs available
   function randomNumber(max) {
     currentSongIndex = Math.floor(Math.random() * (max - 1) + 1);
 

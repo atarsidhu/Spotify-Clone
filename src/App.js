@@ -14,6 +14,7 @@ let playlistID = "37i9dQZEVXbNG2KDcFcKOF";
 function App() {
   const [{ token, playlists, playlistName }, dispatch] = useDataLayerValue();
 
+  // Assign playlistID
   if (typeof playlists.items !== "undefined") {
     playlists.items.forEach((item) => {
       if (item.name === playlistName) {

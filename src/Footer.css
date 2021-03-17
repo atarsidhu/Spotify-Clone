@@ -120,7 +120,6 @@
 
 #tooltip {
   position: relative;
-  /* display: none; */
 }
 
 #tooltipText {
@@ -136,7 +135,6 @@
   margin-bottom: 5px;
   z-index: 1;
   opacity: 0;
-  /* transition: opacity 0.5s ease; */
 }
 
 #tooltip #tooltipText::after {

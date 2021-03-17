@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Body.css";
 import { useDataLayerValue } from "./DataLayer";
 import Header from "./Header";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import SongRow from "./SongRow";
 import Search from "./Search";
 
 function Body({ spotify }) {
-  const [{ topSongs, searchInfo }] = useDataLayerValue();
+  const [{ topSongs, searchInfo }, dispatch] = useDataLayerValue();
 
   let currentPlaylist = topSongs;
+
+  // If user clicks playlist while in Search component, show clicked playlist
+  useEffect(() => {
+    dispatch({
+      type: "SET_SEARCH",
+      searchInfo: "none",
+    });
+  }, [currentPlaylist]);
 
   return (
     <div className="body">
       <Header spotify={spotify} />
 
+      {/* If user is searching, show Search component. Else, show home */}
       {typeof searchInfo === "undefined" || searchInfo === "none" ? (
         <div>
           <div className="body__info">
@@ -29,13 +35,6 @@ function Body({ spotify }) {
           </div>
 
           <div className="body__songs">
-            {/* <div className="body__icons">
-              <div className="white-background">
-                <PlayCircleFilledIcon className="body__play" />
-              </div>
-              <FavoriteBorderIcon fontSize="large" />
-              <MoreHorizIcon />
-            </div> */}
             <div className="body__rowTitles">
               <p className="body__number">#</p>
               <p className="body__rowName">TITLE</p>

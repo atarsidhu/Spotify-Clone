@@ -2,8 +2,6 @@ import React, { useLayoutEffect, useState } from "react";
 import "./Sidebar.css";
 import SidebarOption from "./SidebarOption";
 import HomeIcon from "@material-ui/icons/Home";
-import SearchIcon from "@material-ui/icons/Search";
-import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import { useDataLayerValue } from "./DataLayer";
 import { slide as Menu } from "react-burger-menu";
 
@@ -12,6 +10,7 @@ function Sidebar() {
   const [{ playlists }] = useDataLayerValue();
   const [screenSize, setScreenSize] = useState([0, 0]);
 
+  // Get window width
   function useMediaQuery() {
     useLayoutEffect(() => {
       function updateScreenSize() {

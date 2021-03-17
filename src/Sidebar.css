@@ -18,12 +18,6 @@
   background-color: black;
 }
 
-/* .hambuger {
-  position: absolute;
-  left: 5%;
-  top: 5%;
-} */
-
 .sidebar__logo {
   height: 70px;
   padding: 10px;
@@ -81,8 +75,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu {
   background: black;
   padding-top: 20px;
-  /* font-size: 1.15em; */
-  /* height: fit-content !important; */
 }
 
 /* Morph shape necessary with bubble or elastic */

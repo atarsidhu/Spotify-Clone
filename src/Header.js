@@ -12,8 +12,6 @@ function Header({ spotify }) {
     spotify
       .search(e.target.value, types)
       .then((response) => {
-        //console.log(response);
-
         dispatch({
           type: "SET_SEARCH",
           searchInfo: response,

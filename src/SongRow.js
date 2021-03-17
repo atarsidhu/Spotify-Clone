@@ -10,6 +10,7 @@ function SongRow({ track, idx }) {
 
   let image = "";
 
+  // If no track album is present, use a default image
   track?.album?.images[0]?.url
     ? (image = track?.album?.images[0]?.url)
     : (image = selectedAlbumImage);
