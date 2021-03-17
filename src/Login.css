@@ -1,17 +1,10 @@
 .login {
-  /* display: grid; */
-  /* place-items: center; */
-  /* display: flex; */
-  /* height: 100vh; */
-  /* background-color: rgba(0, 128, 0, 1); */
   background-image: url("./images/background.jpg");
-  /* background-image: linear-gradient(#1ed15e, #0d5f2a); */
 }
 
 .tint {
   background-image: linear-gradient(to bottom right, #1ed15de1, #000000e1);
   z-index: 1;
-  /* margin-top: 125px; */
   height: 100vh;
   width: 100%;
 }
@@ -36,8 +29,6 @@
 
 .tooltip > a {
   padding: 5px;
-  /* background-color: #1db964; */
-  /* border-radius: 99px; */
   font-weight: 500;
   color: white;
   text-decoration: none;
@@ -45,11 +36,9 @@
 
 .tooltip {
   position: relative;
-  /* display: none; */
 }
 
 .tooltipText {
-  /* display: block; */
   min-width: 300px;
   height: fit-content;
   background-color: #555;
@@ -99,15 +88,6 @@
 }
 
 .slideshow {
-  /* display: flex;
-  justify-content: space-between;
-  color: white; */
-
-  /* max-width: 1000px;
-  height: 500px;
-  position: relative;
-  margin: auto; */
-
   position: absolute;
   top: 50%;
   left: 50%;
@@ -161,9 +141,6 @@
 }
 
 .title {
-  /* position: absolute; */
-  /* width: 100%; */
-  /* top: 10%; */
   margin-bottom: 30px;
   font-size: 400%;
 }
@@ -185,10 +162,6 @@
 .dot___3c3SI {
   border-width: 0;
   margin: 2px;
-  /*border-style: outset;
-  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-  border-image: initial; */
-  /* box-sizing: unset; */
   height: 5px;
   border-radius: 5px;
   background-color: rgba(16, 16, 16, 0.5);
@@ -196,4 +169,49 @@
 
 .carousel__dot--selected {
   background-color: white;
+}
+
+@media only screen and (min-width: 480px) and (max-width: 1000px) {
+  .slideshow {
+    margin-left: -50vw;
+    margin-top: -40vh;
+    /* max-width: 1000px; */
+    /* max-height: 500px; */
+    /* height: 100%; */
+    /* width: 100%; */
+    max-width: 100vw;
+    max-height: 80vh;
+  }
+
+  .title {
+    font-size: 55px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .header__right {
+    margin-right: 20px !important;
+  }
+
+  .slideshow {
+    top: 45%;
+    margin-left: -50vw;
+    margin-top: -30vh;
+  }
+
+  .title {
+    font-size: 35px;
+    min-height: 100px;
+    max-height: 120px;
+  }
+
+  .img-slider {
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 200%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -75px;
+  }
 }

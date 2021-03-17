@@ -125,33 +125,6 @@ function Search({ spotify }) {
             ))}
           </div>
         </div>
-
-        {/* <div className="playlist">
-          <h1 id="playlist__heading">Playlists</h1>
-          <div className="artist__info">
-            {searchInfo?.playlists?.items?.slice(0, 10).map((item) => (
-              <div className="artist__each">
-                <div className="artist__img">
-                  {item?.images[0]?.url ? (
-                    <img
-                      src={item?.images[0]?.url}
-                      alt=""
-                      className="albumImg"
-                    />
-                  ) : (
-                    <Avatar className="albumImg" />
-                  )}
-                </div>
-                <div className="album__name">
-                  <h4 className="albumName">{item?.name}</h4>
-                  <p className="album__artist">
-                    {item?.artists?.map((el) => el.name).join(", ")}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
 
       <div className="search__right">

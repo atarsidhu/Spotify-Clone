@@ -29,13 +29,13 @@ function Body({ spotify }) {
           </div>
 
           <div className="body__songs">
-            <div className="body__icons">
+            {/* <div className="body__icons">
               <div className="white-background">
                 <PlayCircleFilledIcon className="body__play" />
               </div>
               <FavoriteBorderIcon fontSize="large" />
               <MoreHorizIcon />
-            </div>
+            </div> */}
             <div className="body__rowTitles">
               <p className="body__number">#</p>
               <p className="body__rowName">TITLE</p>

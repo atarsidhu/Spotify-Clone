@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useLayoutEffect, useState } from "react";
 import "./Footer.css";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import PauseCircleFilledIcon from "@material-ui/icons/PauseCircleFilled";
@@ -47,11 +47,28 @@ function Footer() {
   let volumeMuteIcon = document.getElementById("volumeMute");
   let tooltip = document.getElementById("tooltipText");
   let volume = document.getElementsByClassName("volume");
+  let sl = document.getElementsByClassName("volume-slider");
+
+  const [screenSize, setScreenSize] = useState([0, 0]);
+
+  function useMediaQuery() {
+    useLayoutEffect(() => {
+      function updateScreenSize() {
+        setScreenSize([window.innerWidth, window.innerHeight]);
+      }
+
+      window.addEventListener("resize", updateScreenSize);
+      updateScreenSize();
+
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
+    return screenSize;
+  }
+  let [width] = useMediaQuery();
 
   for (let i = 0; i < volume.length; i++) {
     volume[i].addEventListener("click", () => {
-      let sl = document.getElementsByClassName("volume-slider");
-      console.log(sl[0]);
       sl[0].style.setProperty("display", "block", "important");
     });
   }
@@ -382,11 +399,18 @@ function Footer() {
             <VolumeUpIcon id="volumeUp" className="volume" />
           </Grid>
           <Grid item xs>
-            <Slider
-              aria-labelledby="continuous-slider"
-              className="volume-slider"
-              orientation="vertical"
-            />
+            {width < 480 ? (
+              <Slider
+                aria-labelledby="continuous-slider"
+                className="volume-slider"
+                orientation="vertical"
+              />
+            ) : (
+              <Slider
+                aria-labelledby="continuous-slider"
+                className="volume-slider"
+              />
+            )}
           </Grid>
         </Grid>
       </div>

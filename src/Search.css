@@ -73,3 +73,63 @@
 .song__tracks::-webkit-scrollbar {
   display: none;
 }
+
+@media only screen and (min-width: 600px) and (max-width: 850px) {
+  .artistImg {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50px;
+  }
+
+  .albumImg {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search {
+    display: grid;
+  }
+
+  .search__left {
+    width: 90vw;
+  }
+
+  .search__right {
+    width: 90vw;
+  }
+
+  .artist__name,
+  .albumName {
+    font-size: 14px;
+  }
+
+  .artist__img {
+    padding-bottom: 5px;
+  }
+
+  .artistImg {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 30px;
+  }
+
+  .albumImg {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .album__artist {
+    color: gray;
+    font-size: 90%;
+  }
+
+  .song__title {
+    margin-left: 0px;
+  }
+
+  .songRow {
+    margin: 0;
+  }
+}
