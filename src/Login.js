@@ -10,15 +10,13 @@ import {
   DotGroup,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import logo from "./images/spotify.jpg";
 
 function Login() {
   return (
     <div className="login">
       <div className="login__header">
-        <img
-          src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
-          alt="Spotify Logo"
-        />
+        <img src={logo} alt="Spotify Logo" className="spotifyLogo" />
         <div className="header__right">
           <div className="tooltip">
             <div className="tooltipText">

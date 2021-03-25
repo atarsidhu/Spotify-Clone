@@ -1,5 +1,5 @@
 .login {
-  background-image: url("./images/background.jpg");
+  background: url("./images/background.jpg");
 }
 
 .tint {
@@ -7,6 +7,11 @@
   z-index: 1;
   height: 100vh;
   width: 100%;
+}
+
+.spotifyLogo {
+  object-fit: contain;
+  height: 75px;
 }
 
 .login__header {
