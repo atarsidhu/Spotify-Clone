@@ -4,6 +4,7 @@ import SidebarOption from "./SidebarOption";
 import HomeIcon from "@material-ui/icons/Home";
 import { useDataLayerValue } from "./DataLayer";
 import { slide as Menu } from "react-burger-menu";
+import logo from "./images/spotify.jpg";
 
 function Sidebar() {
   // Getting playlist from DataLayer
@@ -45,11 +46,7 @@ function Sidebar() {
         </div>
       ) : (
         <div className="sidebar">
-          <img
-            className="sidebar__logo"
-            src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
-            alt="Spotify Logo"
-          />
+          <img className="sidebar__logo" src={logo} alt="Spotify Logo" />
           <SidebarOption Icon={HomeIcon} title="Home" />
 
           <br />
